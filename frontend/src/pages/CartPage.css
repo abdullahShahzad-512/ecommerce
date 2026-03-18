@@ -1,0 +1,283 @@
+/* ============================================
+   CartPage
+   ============================================ */
+.cart-empty {
+  padding: var(--sp-20) 0;
+}
+
+.cart-page {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--sp-10);
+  padding: var(--sp-10) 0 var(--sp-16);
+  align-items: start;
+}
+
+/* ---- Cart Items ---- */
+.cart-items__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-6);
+}
+.cart-clear {
+  font-size: 13px;
+  color: var(--color-ink-3);
+  transition: color var(--transition);
+}
+.cart-clear:hover { color: var(--color-accent); }
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: var(--sp-5);
+  padding: var(--sp-5) 0;
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+}
+.cart-item:last-child { border-bottom: none; }
+
+.cart-item__image {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  flex-shrink: 0;
+}
+.cart-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.cart-item__name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-ink);
+  transition: color var(--transition);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cart-item__name:hover { color: var(--color-accent); }
+
+.cart-item__meta {
+  display: flex;
+  gap: var(--sp-4);
+  font-size: 13px;
+  color: var(--color-ink-3);
+}
+
+.cart-item__price {
+  font-size: 14px;
+  color: var(--color-ink-2);
+}
+
+.cart-item__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sp-3);
+  flex-shrink: 0;
+}
+
+.cart-item__subtotal {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.cart-item__remove {
+  color: var(--color-ink-4);
+  transition: color var(--transition);
+  padding: 4px;
+}
+.cart-item__remove:hover { color: var(--color-accent); }
+
+/* Qty selector in cart */
+.cart-page .qty-selector {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.cart-page .qty-selector button {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--color-ink-2);
+  transition: all var(--transition);
+}
+.cart-page .qty-selector button:hover {
+  background: var(--color-bg-alt);
+  color: var(--color-ink);
+}
+.cart-page .qty-selector span {
+  min-width: 36px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.cart-continue {
+  margin-top: var(--sp-6);
+}
+
+/* ---- Order Summary ---- */
+.cart-summary__box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  position: sticky;
+  top: calc(var(--nav-height) + var(--sp-4));
+}
+
+.cart-summary__box h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart-summary__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.cart-summary__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-ink-2);
+}
+.cart-summary__row .free { color: var(--color-success); font-weight: 600; }
+
+.cart-summary__free-shipping {
+  margin-top: var(--sp-2);
+}
+.shipping-progress {
+  height: 4px;
+  background: var(--color-bg-alt);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: var(--sp-2);
+}
+.shipping-progress__bar {
+  height: 100%;
+  background: var(--color-success);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.cart-summary__free-shipping p {
+  font-size: 12px;
+  color: var(--color-ink-3);
+}
+
+.cart-summary__total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.cart-checkout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+
+.cart-summary__payments {
+  text-align: center;
+}
+.cart-summary__payments .label {
+  color: var(--color-ink-3);
+  margin-bottom: var(--sp-2);
+  display: block;
+}
+.payment-icons {
+  display: flex;
+  gap: var(--sp-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.payment-icon {
+  padding: 4px 8px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-ink-2);
+}
+
+.cart-promo__label {
+  font-size: 13px;
+  color: var(--color-ink-2);
+  margin-bottom: var(--sp-2);
+}
+.cart-promo__form {
+  display: flex;
+  gap: var(--sp-2);
+}
+.cart-promo__form input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  min-width: 0;
+  transition: border-color var(--transition);
+}
+.cart-promo__form input:focus { border-color: var(--color-ink); }
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+  .cart-page { grid-template-columns: 1fr 320px; gap: var(--sp-8); }
+}
+
+@media (max-width: 768px) {
+  .cart-page { grid-template-columns: 1fr; }
+  .cart-summary__box { position: static; }
+  .cart-item { grid-template-columns: 80px 1fr; gap: var(--sp-3); }
+  .cart-item__controls {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-item { grid-template-columns: 70px 1fr; gap: var(--sp-3); }
+  .cart-item__image { width: 70px; height: 70px; }
+}
