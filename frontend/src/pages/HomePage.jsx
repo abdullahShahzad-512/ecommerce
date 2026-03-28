@@ -104,12 +104,11 @@ export default function HomePage() {
           </div>
           <div className="hero__image-wrap">
             <img key={heroIdx} src={hero.image} alt={hero.label} className="hero__image" />
-            <div className="hero__image-badge">
-              <span className="label">Free shipping</span>
-              <span>Orders over $75</span>
-            </div>
+           
           </div>
         </div>
+
+        {/* Dots sit BELOW the inner grid, inside hero but after the container */}
         <div className="hero__dots">
           {HERO_SLIDES.map((_, i) => (
             <button key={i} className={`hero__dot${i === heroIdx ? ' active' : ''}`}

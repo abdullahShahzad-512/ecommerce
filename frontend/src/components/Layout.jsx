@@ -1,6 +1,7 @@
 import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useCart } from '../CartContext';
+import { useAuth } from '../AuthContext';
 import './Layout.css';
 
 function SearchBar({ onClose }) {
@@ -41,6 +42,7 @@ function SearchBar({ onClose }) {
 
 export default function Layout() {
   const { totalItems } = useCart();
+  const { isLoggedIn, isAdmin, user, logout } = useAuth();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -131,6 +133,21 @@ export default function Layout() {
               </svg>
             </button>
 
+            {isLoggedIn ? (
+              <div className="navbar__user-menu">
+                {isAdmin && (
+                  <Link to="/admin" className="navbar__auth-link">Admin</Link>
+                )}
+                <span className="navbar__user-name">{user?.full_name || 'Account'}</span>
+                <button className="navbar__auth-link" onClick={logout}>Logout</button>
+              </div>
+            ) : (
+              <div className="navbar__auth-actions">
+                <Link to="/login" className="navbar__auth-link">Sign in</Link>
+                <Link to="/signup" className="navbar__auth-link navbar__auth-link--primary">Sign up</Link>
+              </div>
+            )}
+
             <Link to="/cart" className="navbar__cart-btn" aria-label={`Cart: ${totalItems} items`}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
@@ -186,6 +203,20 @@ export default function Layout() {
           ))}
         </nav>
         <div className="mobile-menu__footer">
+          {!isLoggedIn ? (
+            <div className="mobile-menu__auth-links">
+              <Link to="/login" className="btn btn-outline btn-full" onClick={() => setMobileMenuOpen(false)}>
+                Sign in
+              </Link>
+              <Link to="/signup" className="btn btn-primary btn-full" onClick={() => setMobileMenuOpen(false)}>
+                Sign up
+              </Link>
+            </div>
+          ) : (
+            <button className="btn btn-outline btn-full" onClick={() => { logout(); setMobileMenuOpen(false); }}>
+              Logout
+            </button>
+          )}
           <Link to="/cart" className="btn btn-outline btn-full" onClick={() => setMobileMenuOpen(false)}>
             View Cart {totalItems > 0 && `(${totalItems})`}
           </Link>
